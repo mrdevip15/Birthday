@@ -6,12 +6,30 @@ $('document').ready(function(){
 		var vw;
 		$(window).resize(function(){
 			 vw = $(window).width()/2;
+			 var windowWidth = $(window).width();
+			 
+			 // Responsive spacing based on screen width
+			 var spacing, topPosition;
+			 if (windowWidth <= 320) {
+				 spacing = 40;
+				 topPosition = 200;
+			 } else if (windowWidth <= 480) {
+				 spacing = 60;
+				 topPosition = 220;
+			 } else if (windowWidth <= 768) {
+				 spacing = 80;
+				 topPosition = 230;
+			 } else {
+				 spacing = 125;
+				 topPosition = 240;
+			 }
+			 
 			$('#b1,#b2,#b3,#b4,#b5').stop();
-			$('#b11').animate({top:240, left: vw-250},500);
-			$('#b22').animate({top:240, left: vw-125},500);
-			$('#b33').animate({top:240, left: vw},500);
-			$('#b44').animate({top:240, left: vw+125},500);
-			$('#b55').animate({top:240, left: vw+250},500);
+			$('#b11').animate({top:topPosition, left: vw-(spacing*2)},500);
+			$('#b22').animate({top:topPosition, left: vw-spacing},500);
+			$('#b33').animate({top:topPosition, left: vw},500);
+			$('#b44').animate({top:topPosition, left: vw+spacing},500);
+			$('#b55').animate({top:topPosition, left: vw+(spacing*2)},500);
 		});
 
 	$('#turn_on').click(function(){
@@ -117,18 +135,35 @@ $('document').ready(function(){
 		
 	$('#wish_message').click(function(){
 		 vw = $(window).width()/2;
+		 var windowWidth = $(window).width();
+		 
+		 // Responsive spacing based on screen width
+		 var spacing, topPosition;
+		 if (windowWidth <= 320) {
+			 spacing = 40;
+			 topPosition = 200;
+		 } else if (windowWidth <= 480) {
+			 spacing = 60;
+			 topPosition = 220;
+		 } else if (windowWidth <= 768) {
+			 spacing = 80;
+			 topPosition = 230;
+		 } else {
+			 spacing = 125;
+			 topPosition = 240;
+		 }
 
 		$('#b1,#b2,#b3,#b4,#b5').stop();
 		$('#b1').attr('id','b11');
-		$('#b2').attr('id','b22')
+		$('#b2').attr('id','b22');
 		$('#b3').attr('id','b33')
 		$('#b4').attr('id','b44')
 		$('#b5').attr('id','b55')
-		$('#b11').animate({top:240, left: vw-250},500);
-		$('#b22').animate({top:240, left: vw-125},500);
-		$('#b33').animate({top:240, left: vw},500);
-		$('#b44').animate({top:240, left: vw+125},500);
-		$('#b55').animate({top:240, left: vw+250},500);
+		$('#b11').animate({top:topPosition, left: vw-(spacing*2)},500);
+		$('#b22').animate({top:topPosition, left: vw-spacing},500);
+		$('#b33').animate({top:topPosition, left: vw},500);
+		$('#b44').animate({top:topPosition, left: vw+spacing},500);
+		$('#b55').animate({top:topPosition, left: vw+(spacing*2)},500);
 		$('.balloons').css('opacity','0.9');
 		$('.balloons h2').fadeIn(3000);
 		$(this).fadeOut('slow').delay(3000).promise().done(function(){
@@ -147,10 +182,26 @@ $('document').ready(function(){
 		function msgLoop (i) {
 			$("p:nth-child("+i+")").fadeOut('slow').delay(800).promise().done(function(){
 			i=i+1;
-			$("p:nth-child("+i+")").fadeIn('slow').delay(1000);
+			$("p:nth-child("+i+")").fadeIn('slow').delay(1500);
 			if(i==29){
 				$("p:nth-child(28)").fadeOut('slow').promise().done(function () {
 					$('.cake').fadeIn('fast');
+					// Show message before changing song
+					var messageDiv = $('<div class="song-change-message" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.8); color: white; padding: 20px; border-radius: 10px; font-size: 24px; font-family: Signika, sans-serif; z-index: 9999; text-align: center;">Now listen to this honey ❤️</div>');
+					$('body').append(messageDiv);
+					
+					// Fade in the message
+					messageDiv.fadeIn('slow').delay(3000).fadeOut('slow', function() {
+						messageDiv.remove();
+						// Stop current song and play Love-song-for-you.mp3
+						var audio = $('.song')[0];
+						audio.pause();
+						audio.currentTime = 0;
+						// Change source to Love-song-for-you.mp3
+						audio.src = 'Love-song-for-you.mp3';
+						audio.load();
+						audio.play();
+					});
 				});
 				
 			}

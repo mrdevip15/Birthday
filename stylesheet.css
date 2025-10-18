@@ -1056,7 +1056,7 @@ audio {
 	100% {
 		-ms-transform:translate(0px,0px);
 	}
-}o
+}
 @keyframes bannar_come {
 	0%{
 		transform:translate(0px,-1000px);
@@ -1092,6 +1092,43 @@ audio {
 	color: #BF4136;
 	text-shadow: 5px 5px 5px #FFF;
 	display: none;
+}
+
+/* Responsive balloon styles for mobile devices */
+@media only screen and (max-width: 768px) {
+	.balloons {
+		width: 80px;
+		height: 146px;
+		background-size: 80px 146px;
+	}
+	.balloons h2 {
+		font-size: 35px;
+		text-shadow: 3px 3px 3px #FFF;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.balloons {
+		width: 60px;
+		height: 110px;
+		background-size: 60px 110px;
+	}
+	.balloons h2 {
+		font-size: 25px;
+		text-shadow: 2px 2px 2px #FFF;
+	}
+}
+
+@media only screen and (max-width: 320px) {
+	.balloons {
+		width: 50px;
+		height: 92px;
+		background-size: 50px 92px;
+	}
+	.balloons h2 {
+		font-size: 20px;
+		text-shadow: 1px 1px 1px #FFF;
+	}
 }
 #b1,#b11 {
 	background-image: url('b1.png');
