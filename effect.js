@@ -11,15 +11,15 @@ $('document').ready(function(){
 			 // Responsive spacing and balloon size based on screen width
 			 var spacing, topPosition, balloonWidth;
 			 if (windowWidth <= 320) {
-				 spacing = 40;
+				 spacing = 20;
 				 topPosition = 200;
 				 balloonWidth = 50;
 			 } else if (windowWidth <= 480) {
-				 spacing = 60;
+				 spacing = 30;
 				 topPosition = 220;
 				 balloonWidth = 60;
 			 } else if (windowWidth <= 768) {
-				 spacing = 80;
+				 spacing = 50;
 				 topPosition = 230;
 				 balloonWidth = 80;
 			 } else {
@@ -148,15 +148,15 @@ $('document').ready(function(){
 		 // Responsive spacing and balloon size based on screen width
 		 var spacing, topPosition, balloonWidth;
 		 if (windowWidth <= 320) {
-			 spacing = 40;
+			 spacing = 20;
 			 topPosition = 200;
 			 balloonWidth = 50;
 		 } else if (windowWidth <= 480) {
-			 spacing = 60;
+			 spacing = 30;
 			 topPosition = 220;
 			 balloonWidth = 60;
 		 } else if (windowWidth <= 768) {
-			 spacing = 80;
+			 spacing = 50;
 			 topPosition = 230;
 			 balloonWidth = 80;
 		 } else {
