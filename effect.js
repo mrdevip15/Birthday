@@ -5,31 +5,39 @@ $(window).load(function(){
 $('document').ready(function(){
 		var vw;
 		$(window).resize(function(){
-			 vw = $(window).width()/2;
 			 var windowWidth = $(window).width();
+			 var screenCenter = windowWidth / 2;
 			 
-			 // Responsive spacing based on screen width
-			 var spacing, topPosition;
+			 // Responsive spacing and balloon size based on screen width
+			 var spacing, topPosition, balloonWidth;
 			 if (windowWidth <= 320) {
 				 spacing = 40;
 				 topPosition = 200;
+				 balloonWidth = 50;
 			 } else if (windowWidth <= 480) {
 				 spacing = 60;
 				 topPosition = 220;
+				 balloonWidth = 60;
 			 } else if (windowWidth <= 768) {
 				 spacing = 80;
 				 topPosition = 230;
+				 balloonWidth = 80;
 			 } else {
 				 spacing = 125;
 				 topPosition = 240;
+				 balloonWidth = 100;
 			 }
 			 
+			 // Calculate total width of all balloons with spacing
+			 var totalWidth = (balloonWidth * 5) + (spacing * 4);
+			 var startX = screenCenter - (totalWidth / 2);
+			 
 			$('#b1,#b2,#b3,#b4,#b5').stop();
-			$('#b11').animate({top:topPosition, left: vw-(spacing*2)},500);
-			$('#b22').animate({top:topPosition, left: vw-spacing},500);
-			$('#b33').animate({top:topPosition, left: vw},500);
-			$('#b44').animate({top:topPosition, left: vw+spacing},500);
-			$('#b55').animate({top:topPosition, left: vw+(spacing*2)},500);
+			$('#b11').animate({top:topPosition, left: startX},500);
+			$('#b22').animate({top:topPosition, left: startX + balloonWidth + spacing},500);
+			$('#b33').animate({top:topPosition, left: startX + (balloonWidth + spacing) * 2},500);
+			$('#b44').animate({top:topPosition, left: startX + (balloonWidth + spacing) * 3},500);
+			$('#b55').animate({top:topPosition, left: startX + (balloonWidth + spacing) * 4},500);
 		});
 
 	$('#turn_on').click(function(){
@@ -134,24 +142,32 @@ $('document').ready(function(){
 
 		
 	$('#wish_message').click(function(){
-		 vw = $(window).width()/2;
 		 var windowWidth = $(window).width();
+		 var screenCenter = windowWidth / 2;
 		 
-		 // Responsive spacing based on screen width
-		 var spacing, topPosition;
+		 // Responsive spacing and balloon size based on screen width
+		 var spacing, topPosition, balloonWidth;
 		 if (windowWidth <= 320) {
 			 spacing = 40;
 			 topPosition = 200;
+			 balloonWidth = 50;
 		 } else if (windowWidth <= 480) {
 			 spacing = 60;
 			 topPosition = 220;
+			 balloonWidth = 60;
 		 } else if (windowWidth <= 768) {
 			 spacing = 80;
 			 topPosition = 230;
+			 balloonWidth = 80;
 		 } else {
 			 spacing = 125;
 			 topPosition = 240;
+			 balloonWidth = 100;
 		 }
+		 
+		 // Calculate total width of all balloons with spacing
+		 var totalWidth = (balloonWidth * 5) + (spacing * 4);
+		 var startX = screenCenter - (totalWidth / 2);
 
 		$('#b1,#b2,#b3,#b4,#b5').stop();
 		$('#b1').attr('id','b11');
@@ -159,11 +175,11 @@ $('document').ready(function(){
 		$('#b3').attr('id','b33')
 		$('#b4').attr('id','b44')
 		$('#b5').attr('id','b55')
-		$('#b11').animate({top:topPosition, left: vw-(spacing*2)},500);
-		$('#b22').animate({top:topPosition, left: vw-spacing},500);
-		$('#b33').animate({top:topPosition, left: vw},500);
-		$('#b44').animate({top:topPosition, left: vw+spacing},500);
-		$('#b55').animate({top:topPosition, left: vw+(spacing*2)},500);
+		$('#b11').animate({top:topPosition, left: startX},500);
+		$('#b22').animate({top:topPosition, left: startX + balloonWidth + spacing},500);
+		$('#b33').animate({top:topPosition, left: startX + (balloonWidth + spacing) * 2},500);
+		$('#b44').animate({top:topPosition, left: startX + (balloonWidth + spacing) * 3},500);
+		$('#b55').animate({top:topPosition, left: startX + (balloonWidth + spacing) * 4},500);
 		$('.balloons').css('opacity','0.9');
 		$('.balloons h2').fadeIn(3000);
 		$(this).fadeOut('slow').delay(3000).promise().done(function(){
